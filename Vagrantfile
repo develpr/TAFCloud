@@ -5,8 +5,8 @@
 Vagrant::Config.run do |config|
         config.vm.box = "magento1702"
         config.ssh.host = "127.0.0.1"
-        config.vm.forward_port 22, 2222, :auto => true
-        config.vm.forward_port 80, 8080, :auto => true
+        config.vm.network :forwarded_port, host: 2222, guest: 22
+        config.vm.network :forwarded_port, host: 8080, guest: 80
         config.ssh.max_tries = 10
         config.ssh.timeout = 15
         config.vm.customize ["modifyvm", :id, "--memory", 2048]
